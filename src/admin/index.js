@@ -1,3 +1,4 @@
-import { Grade } from '@material-ui/icons';
+import { VerifiedUser } from '@material-ui/icons';
 
-export default { icon: Grade };
+// eslint-disable-next-line import/no-anonymous-default-export
+export default { icon: VerifiedUser };

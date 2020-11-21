@@ -9,7 +9,8 @@ import { Dashboard, NotFound } from './pages';
 import { Login, Layout } from './layout';
 
 import admin from './admin';
-import users from './users';
+import customer from './customer';
+import performer from './performer';
 
 import theme from './theme';
 
@@ -24,8 +25,9 @@ function App() {
       layout={Layout}
       theme={theme}
     >
-      <Resource name='users' {...admin} />
-      <Resource name='admins' {...users} />
+      <Resource name='customer' {...customer} />
+      <Resource name='performer' {...performer} />
+      <Resource name='admins' {...admin} />
     </Admin>
   );
 }

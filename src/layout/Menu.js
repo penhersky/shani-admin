@@ -3,8 +3,10 @@ import { useSelector } from 'react-redux';
 import { useMediaQuery, Box } from '@material-ui/core';
 import { MenuItemLink, DashboardMenuItem, useTranslate } from 'react-admin';
 import { withRouter } from 'react-router-dom';
+import { People } from '@material-ui/icons';
 
-import user from '../users';
+import customer from '../customer';
+import performer from '../performer';
 import admin from '../admin';
 
 import SubMenu from './SubMenu';
@@ -30,15 +32,25 @@ const Menu = ({ onMenuClick, logout, dense = false }) => {
         isOpen={state.menuSales}
         sidebarIsOpen={open}
         name='users'
-        icon={<user.icon />}
+        icon={<People />}
         dense={dense}
       >
         <MenuItemLink
-          to={`/users`}
-          primaryText={translate(`users`, {
+          to={`/customer`}
+          primaryText={translate(`customers`, {
             smart_count: 2,
           })}
-          leftIcon={<user.icon />}
+          leftIcon={<customer.icon />}
+          onClick={onMenuClick}
+          sidebarIsOpen={open}
+          dense={dense}
+        />
+        <MenuItemLink
+          to={`/performer`}
+          primaryText={translate(`performers`, {
+            smart_count: 2,
+          })}
+          leftIcon={<performer.icon />}
           onClick={onMenuClick}
           sidebarIsOpen={open}
           dense={dense}

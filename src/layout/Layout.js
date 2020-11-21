@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Layout, Sidebar } from 'react-admin';
-// import AppBar from './AppBar';
+import AppBar from './Appbar';
 import Menu from './Menu';
 import theme from '../theme';
 
@@ -10,7 +10,7 @@ const LayoutA = (props) => {
   return (
     <Layout
       {...props}
-      // appBar={AppBar}
+      appBar={AppBar}
       sidebar={CustomSidebar}
       menu={Menu}
       theme={theme}
