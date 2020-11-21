@@ -1,12 +1,15 @@
 import React from 'react';
 import { Admin, Resource } from 'react-admin';
-import { Grade, People } from '@material-ui/icons';
 
 import graphQLProvider from './buildGraphQLProvider';
 import authProvider from './authProvider';
 
-import { Menu } from './components';
 import { Dashboard, NotFound } from './pages';
+
+import { Login, Layout } from './layout';
+
+import admin from './admin';
+import users from './users';
 
 import theme from './theme';
 
@@ -17,11 +20,12 @@ function App() {
       authProvider={authProvider}
       dashboard={Dashboard}
       catchAll={NotFound}
+      loginPage={Login}
+      layout={Layout}
       theme={theme}
-      menu={Menu}
     >
-      <Resource name='users' icon={People} />
-      <Resource name='admins' icon={Grade} />
+      <Resource name='users' {...admin} />
+      <Resource name='admins' {...users} />
     </Admin>
   );
 }

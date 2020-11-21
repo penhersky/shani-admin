@@ -1,1 +1,3 @@
-export { default as List } from './List';
+import { Grade } from '@material-ui/icons';
+
+export default { icon: Grade };
