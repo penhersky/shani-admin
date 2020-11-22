@@ -1,9 +1,44 @@
+const LOGIN = (email, pass) => `
+  query {
+    adminLogin(email: "${email}", password: "${pass}") {
+    result
+    message
+    redirectTo
+    admin {
+      id
+      name
+      email
+      imageUrl
+      state
+      createdAt
+    }
+    token
+  }
+}
+`;
+
 const provider = {
-  login: ({ username, password }) => {
-    console.log(username, password);
-    localStorage.setItem('token', 'test_token');
-    localStorage.setItem('permissions', {});
-    return Promise.resolve();
+  login: async ({ username, password }) => {
+    try {
+      const data = await fetch(`${process.env.REACT_APP_ACCOUNT_SERVER_URL}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          query: LOGIN(username, password),
+        }),
+      }).then((r) => r.json());
+      localStorage.setItem('token', data?.data?.adminLogin?.token);
+      localStorage.setItem(
+        'permissions',
+        JSON.stringify(data?.data?.adminLogin?.admin),
+      );
+      return Promise.resolve();
+    } catch (error) {
+      return Promise.reject(error);
+    }
   },
   logout: () => {
     localStorage.removeItem('token');

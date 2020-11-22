@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useMediaQuery, Box } from '@material-ui/core';
-import { MenuItemLink, DashboardMenuItem, useTranslate } from 'react-admin';
+import { MenuItemLink, DashboardMenuItem } from 'react-admin';
 import { withRouter } from 'react-router-dom';
 import { People } from '@material-ui/icons';
 
@@ -12,7 +12,6 @@ import admin from '../admin';
 import SubMenu from './SubMenu';
 
 const Menu = ({ onMenuClick, logout, dense = false }) => {
-  const translate = useTranslate();
   const [state, setState] = useState({
     menuCatalog: true,
     menuSales: true,
@@ -37,9 +36,7 @@ const Menu = ({ onMenuClick, logout, dense = false }) => {
       >
         <MenuItemLink
           to={`/customer`}
-          primaryText={translate(`customers`, {
-            smart_count: 2,
-          })}
+          primaryText={`customers`}
           leftIcon={<customer.icon />}
           onClick={onMenuClick}
           sidebarIsOpen={open}
@@ -47,9 +44,7 @@ const Menu = ({ onMenuClick, logout, dense = false }) => {
         />
         <MenuItemLink
           to={`/performer`}
-          primaryText={translate(`performers`, {
-            smart_count: 2,
-          })}
+          primaryText={`performers`}
           leftIcon={<performer.icon />}
           onClick={onMenuClick}
           sidebarIsOpen={open}
@@ -58,9 +53,7 @@ const Menu = ({ onMenuClick, logout, dense = false }) => {
       </SubMenu>
       <MenuItemLink
         to={`/admins`}
-        primaryText={translate(`admins`, {
-          smart_count: 2,
-        })}
+        primaryText={`admins`}
         leftIcon={<admin.icon />}
         onClick={onMenuClick}
         sidebarIsOpen={open}

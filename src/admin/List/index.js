@@ -10,6 +10,7 @@ import {
 } from 'react-admin';
 
 const adminList = (props) => {
+  console.log(props);
   return (
     <List {...props} title='admins'>
       <Datagrid>
