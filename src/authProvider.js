@@ -20,17 +20,22 @@ const LOGIN = (email, pass) => `
 const provider = {
   login: async ({ username, password }) => {
     try {
-      const data = await fetch(`${process.env.REACT_APP_ACCOUNT_SERVER_URL}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
+      const data = await fetch(
+        `${process.env.REACT_APP_ACCOUNT_SERVER_URL}/graphql`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify({
+            query: LOGIN(username, password),
+          }),
         },
-        body: JSON.stringify({
-          query: LOGIN(username, password),
-        }),
-      }).then((r) => r.json());
+      ).then((r) => r.json());
       localStorage.setItem('token', data?.data?.adminLogin?.token);
+      const date = new Date();
+      localStorage.setItem('exp_d_t', date.setHours(date.getHours() + 24));
       localStorage.setItem(
         'permissions',
         JSON.stringify(data?.data?.adminLogin?.admin),
@@ -42,10 +47,13 @@ const provider = {
   },
   logout: () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('exp_d_t');
     localStorage.removeItem('permissions');
     return Promise.resolve();
   },
   checkAuth: () => {
+    if (Number(localStorage.getItem('exp_d_t')) < Date.now())
+      localStorage.removeItem('exp_d_t');
     return localStorage.getItem('token') ? Promise.resolve() : Promise.reject();
   },
   getPermissions: () => {
