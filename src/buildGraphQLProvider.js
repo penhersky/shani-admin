@@ -6,18 +6,14 @@ const buildQuery = (introspectionResults) => (
   resourceName,
   params,
 ) => {
-  const resource = introspectionResults.resources.find(
-    (r) => r.type.name === resourceName,
-  );
-  console.log('resource', resource);
-  console.log('query', introspectionResults);
-  console.log('c', raFetchType, resource, params);
+  console.log('params', raFetchType, resourceName, params);
   switch (raFetchType) {
     case GET_LIST:
       return {
-        query: gql`query get${resource} {
+        query: gql`query get${resourceName}s {
+                    get${resourceName}s {
                       count
-                      admins {
+                      ${String(resourceName).toLocaleLowerCase()}s {
                         id
                         name
                         email
@@ -26,8 +22,17 @@ const buildQuery = (introspectionResults) => (
                         createdAt
                         updatedAt
                       }
+                    }
                   }`,
-        parseResponse: (response) => console.log(response),
+        parseResponse: (response) => {
+          return {
+            data:
+              response?.data[`get${resourceName}s`][
+                `${String(resourceName).toLocaleLowerCase()}s`
+              ],
+            total: response?.data[`get${resourceName}s`]?.count,
+          };
+        },
       };
 
     default:

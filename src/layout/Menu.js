@@ -52,7 +52,7 @@ const Menu = ({ onMenuClick, logout, dense = false }) => {
         />
       </SubMenu>
       <MenuItemLink
-        to={`/admins`}
+        to={`/admin`}
         primaryText={`admins`}
         leftIcon={<admin.icon />}
         onClick={onMenuClick}

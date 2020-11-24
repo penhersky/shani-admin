@@ -5,8 +5,10 @@ import {
   TextField,
   ImageField,
   EmailField,
-  // EditButton,
-  // DeleteButton,
+  DateField,
+  ChipField,
+  EditButton,
+  DeleteButton,
 } from 'react-admin';
 
 const adminList = (props) => {
@@ -16,12 +18,12 @@ const adminList = (props) => {
         <TextField source='id' />
         <TextField source='name' />
         <EmailField source='email' />
-        <TextField source='state' />
+        <ChipField source='state' />
         <ImageField source='imageUrl' />
-        <TextField source='updatedAt' />
-        <TextField source='createdAt' />
-        {/* <EditButton basePath='/users' />
-        <DeleteButton basePath='/users' /> */}
+        <DateField source='updatedAt' />
+        <DateField source='createdAt' />
+        <EditButton basePath='/users' />
+        <DeleteButton basePath='/users' />
       </Datagrid>
     </List>
   );
