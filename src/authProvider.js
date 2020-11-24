@@ -17,6 +17,12 @@ const LOGIN = (email, pass) => `
 }
 `;
 
+const clearStorage = () => {
+  localStorage.removeItem('token');
+  localStorage.removeItem('exp_d_t');
+  localStorage.removeItem('permissions');
+};
+
 const provider = {
   login: async ({ username, password }) => {
     try {
@@ -33,6 +39,7 @@ const provider = {
           }),
         },
       ).then((r) => r.json());
+      if (!data?.data?.adminLogin?.token) return Promise.reject();
       localStorage.setItem('token', data?.data?.adminLogin?.token);
       const date = new Date();
       localStorage.setItem('exp_d_t', date.setHours(date.getHours() + 24));
@@ -46,19 +53,25 @@ const provider = {
     }
   },
   logout: () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('exp_d_t');
-    localStorage.removeItem('permissions');
+    clearStorage();
     return Promise.resolve();
   },
   checkAuth: () => {
-    if (Number(localStorage.getItem('exp_d_t')) < Date.now())
-      localStorage.removeItem('exp_d_t');
+    if (Number(localStorage.getItem('exp_d_t')) < Date.now()) clearStorage();
     return localStorage.getItem('token') ? Promise.resolve() : Promise.reject();
   },
   getPermissions: () => {
     const role = localStorage.getItem('permissions');
     return role ? Promise.resolve(role) : Promise.reject();
+  },
+  getIdentity: () => {
+    const user = JSON.parse(localStorage.getItem('permissions'));
+
+    return Promise.resolve({
+      id: user?.id,
+      fullName: user?.name,
+      avatar: user?.imageUrl,
+    });
   },
 };
 
