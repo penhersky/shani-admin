@@ -1,4 +1,4 @@
-import { GET_LIST } from 'react-admin';
+import { GET_LIST, DELETE } from 'react-admin';
 import gql from 'graphql-tag';
 
 const buildQuery = (introspectionResults) => (
@@ -31,6 +31,20 @@ const buildQuery = (introspectionResults) => (
                 `${String(resourceName).toLocaleLowerCase()}s`
               ],
             total: response?.data[`get${resourceName}s`]?.count,
+          };
+        },
+      };
+    case DELETE:
+      return {
+        query: gql`mutation delete${resourceName}s($idArr: [ID!]!) {
+                    delete${resourceName}s(idArr: $idArr) {
+                      result
+                    }
+                  }`,
+        variables: { idArr: [params?.id] },
+        parseResponse: (response) => {
+          return {
+            data: response?.data[`delete${resourceName}s`]?.result,
           };
         },
       };

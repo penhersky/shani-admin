@@ -22,8 +22,8 @@ const adminList = (props) => {
         <ImageField source='imageUrl' />
         <DateField source='updatedAt' />
         <DateField source='createdAt' />
-        <EditButton basePath='/users' />
-        <DeleteButton basePath='/users' />
+        <EditButton basePath='/admin' />
+        <DeleteButton basePath='/admin' />
       </Datagrid>
     </List>
   );

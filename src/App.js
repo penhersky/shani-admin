@@ -44,16 +44,6 @@ const App = () => {
   }
   return (
     <Admin
-      // dataProvider={buildGraphQLProvider({
-      //   buildQuery,
-      //   client: new ApolloClient({
-      //     uri: `${process.env.REACT_APP_ACCOUNT_SERVER_URL}/graphql`,
-      //     cache: new InMemoryCache(),
-      //     headers: {
-      //       'x-admin-security-token-x': localStorage.getItem('token'),
-      //     },
-      //   }),
-      // })}
       dataProvider={provider}
       authProvider={authProvider}
       i18nProvider={i18nProvider}
