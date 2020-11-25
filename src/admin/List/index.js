@@ -3,13 +3,13 @@ import {
   List,
   Datagrid,
   TextField,
-  ImageField,
-  EmailField,
-  DateField,
   ChipField,
+  EmailField,
   EditButton,
   DeleteButton,
 } from 'react-admin';
+
+import { DateField } from '../../components';
 
 const adminList = (props) => {
   return (
@@ -19,7 +19,6 @@ const adminList = (props) => {
         <TextField source='name' />
         <EmailField source='email' />
         <ChipField source='state' />
-        <ImageField source='imageUrl' />
         <DateField source='updatedAt' />
         <DateField source='createdAt' />
         <EditButton basePath='/admin' />
