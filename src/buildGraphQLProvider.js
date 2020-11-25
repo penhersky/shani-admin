@@ -1,5 +1,5 @@
 import { get } from 'lodash';
-import { GET_LIST, DELETE, CREATE } from 'react-admin';
+import { GET_LIST, GET_ONE, DELETE, DELETE_MANY, CREATE } from 'react-admin';
 import gql from 'graphql-tag';
 
 import * as fragments from './gqlFragments';
@@ -12,6 +12,21 @@ const buildQuery = (introspectionResults) => (
   console.log('params', raFetchType, resourceName, params);
   const lowName = String(resourceName).toLowerCase();
   switch (raFetchType) {
+    case GET_ONE:
+      return {
+        query: gql`query get${resourceName}($id: ID!) {
+                    get${resourceName}(id: $id) {
+                        ${get(fragments, resourceName).large}
+                    }
+                  }`,
+        variables: { id: params?.id },
+        parseResponse: (response) => {
+          return {
+            data: response?.data[`get${resourceName}`],
+          };
+        },
+      };
+
     case GET_LIST:
       return {
         query: gql`query get${resourceName}s {
@@ -29,6 +44,7 @@ const buildQuery = (introspectionResults) => (
           };
         },
       };
+
     case CREATE:
       return {
         query: gql`mutation add${resourceName}($${lowName}: Create${resourceName}) {
@@ -43,6 +59,7 @@ const buildQuery = (introspectionResults) => (
           };
         },
       };
+
     case DELETE:
       return {
         query: gql`mutation delete${resourceName}s($idArr: [ID!]!) {
@@ -51,6 +68,21 @@ const buildQuery = (introspectionResults) => (
                     }
                   }`,
         variables: { idArr: [params?.id] },
+        parseResponse: (response) => {
+          return {
+            data: response?.data[`delete${resourceName}s`]?.result,
+          };
+        },
+      };
+
+    case DELETE_MANY:
+      return {
+        query: gql`mutation delete${resourceName}s($idArr: [ID!]!) {
+                    delete${resourceName}s(idArr: $idArr) {
+                      result
+                    }
+                  }`,
+        variables: { idArr: params?.ids },
         parseResponse: (response) => {
           return {
             data: response?.data[`delete${resourceName}s`]?.result,

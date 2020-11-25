@@ -7,6 +7,7 @@ import {
   EmailField,
   EditButton,
   DeleteButton,
+  ShowButton,
 } from 'react-admin';
 
 import { DateField } from '../../components';
@@ -20,6 +21,7 @@ const adminList = (props) => {
         <EmailField source='email' />
         <ChipField source='state' />
         <DateField source='createdAt' />
+        <ShowButton basePath='/admin' />
         <EditButton basePath='/admin' />
         <DeleteButton basePath='/admin' />
       </Datagrid>
