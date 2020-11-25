@@ -1,5 +1,8 @@
-import { GET_LIST, DELETE } from 'react-admin';
+import { get } from 'lodash';
+import { GET_LIST, DELETE, CREATE } from 'react-admin';
 import gql from 'graphql-tag';
+
+import * as fragments from './gqlFragments';
 
 const buildQuery = (introspectionResults) => (
   raFetchType,
@@ -7,6 +10,7 @@ const buildQuery = (introspectionResults) => (
   params,
 ) => {
   console.log('params', raFetchType, resourceName, params);
+  const lowName = String(resourceName).toLowerCase();
   switch (raFetchType) {
     case GET_LIST:
       return {
@@ -14,23 +18,28 @@ const buildQuery = (introspectionResults) => (
                     get${resourceName}s {
                       count
                       ${String(resourceName).toLocaleLowerCase()}s {
-                        id
-                        name
-                        email
-                        imageUrl
-                        state
-                        createdAt
-                        updatedAt
+                        ${get(fragments, resourceName).short}
                       }
                     }
                   }`,
         parseResponse: (response) => {
           return {
-            data:
-              response?.data[`get${resourceName}s`][
-                `${String(resourceName).toLocaleLowerCase()}s`
-              ],
+            data: response?.data[`get${resourceName}s`][`${lowName}s`],
             total: response?.data[`get${resourceName}s`]?.count,
+          };
+        },
+      };
+    case CREATE:
+      return {
+        query: gql`mutation add${resourceName}($${lowName}: Create${resourceName}) {
+                    add${resourceName}(${lowName}: $${lowName}) {
+                      ${get(fragments, resourceName).large}
+                    }
+                  }`,
+        variables: { [lowName]: params?.data },
+        parseResponse: (response) => {
+          return {
+            data: response?.data[`add${resourceName}`],
           };
         },
       };

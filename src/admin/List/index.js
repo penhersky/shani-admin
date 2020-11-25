@@ -19,7 +19,6 @@ const adminList = (props) => {
         <TextField source='name' />
         <EmailField source='email' />
         <ChipField source='state' />
-        <DateField source='updatedAt' />
         <DateField source='createdAt' />
         <EditButton basePath='/admin' />
         <DeleteButton basePath='/admin' />
