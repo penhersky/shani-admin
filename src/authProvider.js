@@ -39,6 +39,7 @@ const provider = {
           }),
         },
       ).then((r) => r.json());
+      console.log(data);
       if (!data?.data?.adminLogin?.token) return Promise.reject();
       localStorage.setItem('token', data?.data?.adminLogin?.token);
       const date = new Date();
