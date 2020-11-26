@@ -11,7 +11,7 @@ import {
 } from 'react-admin';
 
 import { DateField } from '../../components';
-import { allowed } from '../../accessLevels';
+import { allowedEdit } from '../../accessLevels';
 
 const adminList = (props) => {
   return (
@@ -24,8 +24,8 @@ const adminList = (props) => {
         <DateField source='createdAt' />
         <ShowButton basePath='/admin' />
 
-        <EditButton basePath='/admin' disabled={allowed()} />
-        <DeleteButton basePath='/admin' disabled={allowed()} />
+        <EditButton basePath='/admin' disabled={allowedEdit()} />
+        <DeleteButton basePath='/admin' disabled={allowedEdit()} />
       </Datagrid>
     </List>
   );

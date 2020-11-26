@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Create,
+  Edit,
   SimpleForm,
   TextInput,
   PasswordInput,
@@ -9,9 +9,9 @@ import {
 
 import { getPositions } from '../../accessLevels';
 
-const CreateAdmin = (props) => {
+const EditAdmin = (props) => {
   return (
-    <Create title='Create Admin' {...props}>
+    <Edit title='Edit Admin' {...props}>
       <SimpleForm>
         <TextInput source='name' required />
         <TextInput source='email' required />
@@ -19,8 +19,8 @@ const CreateAdmin = (props) => {
         <TextInput source='imageUrl' />
         <SelectInput source='state' choices={getPositions()} />
       </SimpleForm>
-    </Create>
+    </Edit>
   );
 };
 
-export default CreateAdmin;
+export default EditAdmin;

@@ -1,21 +1,39 @@
+import { filter } from 'lodash';
+
+export const positions = [
+  {
+    name: 'root',
+    id: 100,
+  },
+  {
+    name: 'moderator',
+    id: 50,
+  },
+  {
+    name: 'junior',
+    id: 10,
+  },
+];
+
 const verify = (state) => {
   switch (state) {
-    case 'root':
-      return 100;
-    case 'moderator':
-      return 50;
-    case 'junior':
-      return 10;
-
+    case positions[0].name:
+      return positions[0].id;
+    case positions[1].name:
+      return positions[1].id;
+    case positions[2].name:
+      return positions[2].id;
     default:
       return 10;
   }
 };
 
-export const allowed = () => {
+export const getLevel = (state = null) => {
   const user = JSON.parse(localStorage.getItem('permissions'));
-  const level = verify(user.state);
-  return level < 50;
+  return verify(state ?? user.state);
 };
 
-export default verify;
+export const allowedEdit = () => getLevel() < 50;
+
+export const getPositions = () =>
+  filter(positions, (pos) => getLevel() >= pos.id);

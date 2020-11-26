@@ -1,5 +1,12 @@
 import { get } from 'lodash';
-import { GET_LIST, GET_ONE, DELETE, DELETE_MANY, CREATE } from 'react-admin';
+import {
+  GET_LIST,
+  GET_ONE,
+  DELETE,
+  DELETE_MANY,
+  CREATE,
+  UPDATE,
+} from 'react-admin';
 import gql from 'graphql-tag';
 
 import * as fragments from './gqlFragments';
@@ -56,6 +63,20 @@ const buildQuery = (introspectionResults) => (
         parseResponse: (response) => {
           return {
             data: response?.data[`add${resourceName}`],
+          };
+        },
+      };
+    case UPDATE:
+      return {
+        query: gql`mutation update${resourceName}($${lowName}: Update${resourceName}) {
+                    update${resourceName}(${lowName}: $${lowName}) {
+                      ${get(fragments, resourceName).large}
+                    }
+                  }`,
+        variables: { [lowName]: { id: params?.id, ...params?.data } },
+        parseResponse: (response) => {
+          return {
+            data: response?.data[`update${resourceName}`],
           };
         },
       };
