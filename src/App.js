@@ -52,7 +52,6 @@ const App = () => {
       loginPage={Login}
       layout={Layout}
       theme={theme}
-      locale='en'
     >
       <Resource name='Customer' {...customer} />
       <Resource name='Performer' {...performer} />
