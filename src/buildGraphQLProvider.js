@@ -1,9 +1,13 @@
-import { account } from './dataProviders';
+import { account, user } from './dataProviders';
 
 const providersList = [
   {
     dataProvider: account,
     resources: ['Admin'],
+  },
+  {
+    dataProvider: user,
+    resources: ['Performer', 'Customer'],
   },
 ];
 

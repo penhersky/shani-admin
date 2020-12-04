@@ -13,8 +13,8 @@ import { Dashboard, NotFound } from './pages';
 import { Login, Layout } from './layout';
 
 import admin from './admin';
-import customer from './customer';
-import performer from './performer';
+import customer from './user/customer';
+import performer from './user/performer';
 
 import theme from './theme';
 

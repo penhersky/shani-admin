@@ -5,8 +5,8 @@ import { MenuItemLink, DashboardMenuItem } from 'react-admin';
 import { withRouter } from 'react-router-dom';
 import { People } from '@material-ui/icons';
 
-import customer from '../customer';
-import performer from '../performer';
+import customer from '../user/customer';
+import performer from '../user/performer';
 import admin from '../admin';
 
 import SubMenu from './SubMenu';

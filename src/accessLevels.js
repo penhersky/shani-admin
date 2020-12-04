@@ -7,13 +7,13 @@ export const positions = [
     value: 100,
   },
   {
-    name: 'moderator',
-    id: 'moderator',
+    name: 'admin',
+    id: 'admin',
     value: 50,
   },
   {
-    name: 'junior',
-    id: 'junior',
+    name: 'moderator',
+    id: 'moderator',
     value: 10,
   },
 ];
@@ -37,6 +37,7 @@ export const getLevel = (state = null) => {
 };
 
 export const allowedEdit = () => getLevel() < 50;
+export const allowed = () => getLevel() < 10;
 
 export const getPositions = () =>
   filter(positions, (pos) => getLevel() >= pos.value);
