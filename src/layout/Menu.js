@@ -4,17 +4,19 @@ import { useMediaQuery, Box } from '@material-ui/core';
 import { MenuItemLink, DashboardMenuItem } from 'react-admin';
 import { withRouter } from 'react-router-dom';
 import { People } from '@material-ui/icons';
+import FolderSharedIcon from '@material-ui/icons/FolderShared';
 
 import customer from '../user/customer';
 import performer from '../user/performer';
 import admin from '../admin';
+import profile from '../user/Profile';
 
 import SubMenu from './SubMenu';
 
 const Menu = ({ onMenuClick, logout, dense = false }) => {
   const [state, setState] = useState({
-    menuCatalog: true,
-    menuSales: true,
+    userFolder: true,
+    user: true,
     menuCustomers: true,
   });
   const isXSmall = useMediaQuery((theme) => theme.breakpoints.down('xs'));
@@ -27,8 +29,8 @@ const Menu = ({ onMenuClick, logout, dense = false }) => {
     <Box mt={1}>
       <DashboardMenuItem onClick={onMenuClick} sidebarIsOpen={open} />
       <SubMenu
-        handleToggle={() => handleToggle('menuSales')}
-        isOpen={state.menuSales}
+        handleToggle={() => handleToggle('user')}
+        isOpen={state.user}
         sidebarIsOpen={open}
         name='users'
         icon={<People />}
@@ -50,6 +52,23 @@ const Menu = ({ onMenuClick, logout, dense = false }) => {
           sidebarIsOpen={open}
           dense={dense}
         />
+        <SubMenu
+          handleToggle={() => handleToggle('userFolder')}
+          isOpen={state.userFolder}
+          sidebarIsOpen={open}
+          name='UserData'
+          icon={<FolderSharedIcon />}
+          dense={dense}
+        >
+          <MenuItemLink
+            to={`/profile`}
+            primaryText={`profiles`}
+            leftIcon={<profile.icon />}
+            onClick={onMenuClick}
+            sidebarIsOpen={open}
+            dense={dense}
+          />
+        </SubMenu>
       </SubMenu>
       <MenuItemLink
         to={`/admin`}

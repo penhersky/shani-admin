@@ -63,7 +63,7 @@ const buildQuery = (raFetchType, resourceName, params, lowName) => {
 
     case GET_LIST:
       return {
-        query: gql`query get${resourceName}s ($paginate: Paginate) {
+        query: gql`query get${resourceName}s ($paginate: Paginate!) {
                     get${resourceName}s(paginate: $paginate) {
                       result
                       totalItems

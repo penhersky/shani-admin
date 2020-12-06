@@ -30,18 +30,31 @@ const buildQuery = (raFetchType, resourceName, params, lowName) => {
 
     case GET_LIST:
       return {
-        query: gql`query get${resourceName}s {
-                    get${resourceName}s {
-                      count
+        query: gql`query get${resourceName}s ($paginate: Paginate!) {
+                    get${resourceName}s(paginate: $paginate) {
+                      result
+                      totalItems
+                      page
+                      limit
+                      totalPages
                       ${String(resourceName).toLocaleLowerCase()}s {
                         ${get(fragments, resourceName).short}
                       }
                     }
                   }`,
+        variables: {
+          paginate: {
+            page: params.pagination.page,
+            limit: params.pagination.perPage,
+            sort: params.sort.order,
+            sortKey: params.sort.field,
+          },
+        },
         parseResponse: (response) => {
           return {
             data: response?.data[`get${resourceName}s`][`${lowName}s`],
-            total: response?.data[`get${resourceName}s`]?.count,
+            total: response?.data[`get${resourceName}s`]?.totalItems,
+            page: response?.data[`get${resourceName}s`]?.page,
           };
         },
       };
@@ -62,14 +75,14 @@ const buildQuery = (raFetchType, resourceName, params, lowName) => {
       };
     case UPDATE:
       return {
-        query: gql`mutation update${resourceName}($${lowName}: Update${resourceName}!) {
-                    update${resourceName}(${lowName}: $${lowName}) {
+        query: gql`mutation update${resourceName}($id: ID!, $${lowName}: Update${resourceName}!) {
+                    update${resourceName}(id: $id, ${lowName}: $${lowName}) {
                       ${get(fragments, resourceName).large}
                     }
                   }`,
         variables: {
+          id: params?.id,
           [lowName]: {
-            id: params?.id,
             ...omit(params?.data, ['updatedAt', 'createdAt', '__typename']),
           },
         },
