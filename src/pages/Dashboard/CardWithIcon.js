@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { createElement } from 'react';
 import { Card, Box, Typography, Divider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
@@ -34,14 +33,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CardWithIcon = (props) => {
-  const { icon, title, subtitle, to, children } = props;
+  const { icon: Icon, title, subtitle, to, children } = props;
   const classes = useStyles(props);
   return (
     <Card className={classes.card}>
       <Link to={to}>
         <div className={classes.main}>
           <Box width='3em' className='icon'>
-            {createElement(icon, { fontSize: 'large' })}
+            <Icon style={{ fontSize: '50px' }} />
           </Box>
           <Box textAlign='right'>
             <Typography className={classes.title} color='textSecondary'>

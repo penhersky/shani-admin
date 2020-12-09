@@ -53,7 +53,9 @@ const NList = (props) => {
                 key={record.id}
               >
                 <ListItemAvatar>
-                  <Avatar src={`${record.image}?size=32x32`} />
+                  <Avatar
+                    src={`${record.image ?? record?.imageUrl}?size=32x32`}
+                  />
                 </ListItemAvatar>
                 <ListItemText primary={`${record.name} ${record.email}`} />
               </ListItem>

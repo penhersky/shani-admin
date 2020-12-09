@@ -1,5 +1,7 @@
 import * as React from 'react';
-import CustomerIcon from '@material-ui/icons/PersonAdd';
+import admin from '../../admin';
+import customer from '../../user/customer';
+import performer from '../../user/performer';
 
 import UserList from './UserList';
 
@@ -7,9 +9,9 @@ import './style.css';
 
 const Info = () => (
   <div className='info'>
-    <UserList type='Customer' icon={CustomerIcon} />
-    <UserList type='Performer' icon={CustomerIcon} />
-    <UserList type='Admin' icon={CustomerIcon} />
+    <UserList type='Customer' icon={customer.icon} />
+    <UserList type='Performer' icon={performer.icon} />
+    <UserList type='Admin' icon={admin.icon} />
   </div>
 );
 

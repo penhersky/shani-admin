@@ -15,8 +15,9 @@
 }
 
 .welcome h1 {
-  font-size: 40px;
+  font-size: 50px;
   color: rgba(255, 255, 255, 0.816);
+  font-family: 'Dancing Script', cursive;
 }
 
 .d-content {

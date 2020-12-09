@@ -3,6 +3,7 @@ const admin = {
     id
     name
     email
+    imageUrl
     state
     createdAt
   `,
