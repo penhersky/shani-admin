@@ -8,13 +8,20 @@ import buildGraphQLProvider from 'ra-data-graphql';
 import buildQuery from './buildGraphQLProvider';
 import authProvider from './authProvider';
 
-import { Dashboard, NotFound } from './pages';
+import { Dashboard } from './pages';
 
 import { Login, Layout } from './layout';
 
 import admin from './admin';
-import customer from './user/customer';
-import performer from './user/performer';
+import {
+  Contacts,
+  AccountType,
+  Customer,
+  Location,
+  Performer,
+  Profile,
+  Security,
+} from './user';
 
 import theme from './theme';
 
@@ -48,13 +55,19 @@ const App = () => {
       authProvider={authProvider}
       i18nProvider={i18nProvider}
       dashboard={Dashboard}
-      catchAll={NotFound}
       loginPage={Login}
       layout={Layout}
       theme={theme}
     >
-      <Resource name='Customer' {...customer} />
-      <Resource name='Performer' {...performer} />
+      {/* user */}
+      <Resource name='Customer' {...Customer} />
+      <Resource name='Performer' {...Performer} />
+      <Resource name='Profile' {...Profile} />
+      <Resource name='Contact' {...Contacts} />
+      <Resource name='AccountType' {...AccountType} />
+      <Resource name='Security' {...Security} />
+      <Resource name='Location' {...Location} />
+      {/* admin */}
       <Resource name='Admin' {...admin} />
     </Admin>
   );

@@ -10,6 +10,10 @@ import customer from '../user/customer';
 import performer from '../user/performer';
 import admin from '../admin';
 import profile from '../user/Profile';
+import accountType from '../user/AccountType';
+import security from '../user/Security';
+import contacts from '../user/Contacts';
+import location from '../user/Location';
 
 import SubMenu from './SubMenu';
 
@@ -64,6 +68,38 @@ const Menu = ({ onMenuClick, logout, dense = false }) => {
             to={`/profile`}
             primaryText={`profiles`}
             leftIcon={<profile.icon />}
+            onClick={onMenuClick}
+            sidebarIsOpen={open}
+            dense={dense}
+          />
+          <MenuItemLink
+            to={`/contact`}
+            primaryText={`contacts`}
+            leftIcon={<contacts.icon />}
+            onClick={onMenuClick}
+            sidebarIsOpen={open}
+            dense={dense}
+          />
+          <MenuItemLink
+            to={`/accountType`}
+            primaryText={`accountTypes`}
+            leftIcon={<accountType.icon />}
+            onClick={onMenuClick}
+            sidebarIsOpen={open}
+            dense={dense}
+          />
+          <MenuItemLink
+            to={`/security`}
+            primaryText={`security`}
+            leftIcon={<security.icon />}
+            onClick={onMenuClick}
+            sidebarIsOpen={open}
+            dense={dense}
+          />
+          <MenuItemLink
+            to={`/location`}
+            primaryText={`locations`}
+            leftIcon={<location.icon />}
             onClick={onMenuClick}
             sidebarIsOpen={open}
             dense={dense}

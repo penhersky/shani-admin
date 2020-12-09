@@ -3,7 +3,14 @@ import { account, user } from './dataProviders';
 const providersList = [
   {
     dataProvider: account,
-    resources: ['Admin'],
+    resources: [
+      'Admin',
+      'Profile',
+      'Contact',
+      'AccountType',
+      'Security',
+      'Location',
+    ],
   },
   {
     dataProvider: user,

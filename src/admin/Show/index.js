@@ -10,14 +10,14 @@ import {
 } from 'react-admin';
 
 import { DateField } from '../../components';
-import { Action } from '../../layout';
+import { AdminActions } from '../../layout';
 
 const PostTitle = ({ record }) => (
   <span>{record ? `Admin "${record.name}"` : ''}</span>
 );
 
 const AdminShow = (props) => (
-  <Show {...props} actions={<Action />} title={<PostTitle />}>
+  <Show {...props} actions={<AdminActions />} title={<PostTitle />}>
     <SimpleShowLayout>
       <TextField source='id' />
       <TextField source='name' />

@@ -1,0 +1,32 @@
+.welcome {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  color: white;
+  background-image: url('./img.jpg');
+  background-size: auto;
+  background-position: left;
+  background-repeat: repeat;
+  border-radius: 5px;
+  margin: 5px 0;
+}
+
+.welcome h1 {
+  font-size: 40px;
+  color: rgba(255, 255, 255, 0.816);
+}
+
+.d-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.d-content .graph {
+}
+.d-content .info {
+  display: flex;
+  flex-flow: nowrap row;
+}

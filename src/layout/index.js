@@ -1,6 +1,6 @@
 import Login from './Login';
 import Menu from './Menu';
 import Layout from './Layout';
-import Action from './Action';
+import { Action, AdminActions } from './Action';
 
-export { Layout, Login, Menu, Action };
+export { Layout, Login, Menu, AdminActions, Action };

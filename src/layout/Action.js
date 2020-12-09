@@ -9,7 +9,7 @@ import {
 
 import { Security } from '../components';
 
-const Actions = ({ basePath, data, resource }) => (
+export const AdminActions = ({ basePath, data, resource }) => (
   <TopToolbar>
     <RefreshButton basePath={basePath} record={data} />
     <ListButton basePath={basePath} record={data} />
@@ -20,4 +20,12 @@ const Actions = ({ basePath, data, resource }) => (
   </TopToolbar>
 );
 
-export default Actions;
+export const Action = ({ basePath, data, resource }) => (
+  <TopToolbar>
+    <RefreshButton basePath={basePath} record={data} />
+    <ListButton basePath={basePath} record={data} />
+
+    <EditButton basePath={basePath} record={data} />
+    <DeleteButton basePath={basePath} record={data} />
+  </TopToolbar>
+);
