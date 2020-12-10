@@ -5,12 +5,11 @@ import {
   TextField,
   Labeled,
   ArrayField,
-  ReferenceField,
   SingleFieldList,
 } from 'react-admin';
 
-import { DateField, RefField } from '../../../components';
-import { Action } from '../../../layout';
+import { DateField, RefField, SimpleRefField } from '../../../components';
+import { ActionWithoutDelete } from '../../../layout/Action';
 
 const PostTitle = ({ record }) => (
   <span>
@@ -24,17 +23,21 @@ const PostTitle = ({ record }) => (
 
 const ProfileShow = (props) => {
   return (
-    <Show {...props} actions={<Action />} title={<PostTitle />}>
+    <Show {...props} actions={<ActionWithoutDelete />} title={<PostTitle />}>
       <SimpleShowLayout>
         <TextField source='id' />
-        <RefField source='user' label='User' root='type' content='name' />
+        <RefField source='user' label='User' rootKey='type' content='name' />
 
         <TextField source='firstName' />
         <TextField source='lastName' />
         <TextField source='middleName' />
-        <Labeled label='location'>
-          <TextField source='location.id' />
-        </Labeled>
+        <RefField
+          source='location'
+          label='Location'
+          root='location'
+          content='name'
+        />
+
         <TextField source='description' />
         <Labeled label='birthday'>
           <DateField source='birthday' />
@@ -48,12 +51,10 @@ const ProfileShow = (props) => {
             <TextField source='name' />
           </ReferenceField>
         </ArrayField> */}
-        {/* <TextField source='contacts' /> */}
+
         <ArrayField source='contacts'>
           <SingleFieldList>
-            <ReferenceField label='Category' source='id' reference='Category'>
-              <TextField source='name' />
-            </ReferenceField>
+            <SimpleRefField source='name' root='contact' />
           </SingleFieldList>
         </ArrayField>
         <Labeled label='updatedAt'>

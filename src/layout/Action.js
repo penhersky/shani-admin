@@ -29,3 +29,17 @@ export const Action = ({ basePath, data, resource }) => (
     <DeleteButton basePath={basePath} record={data} />
   </TopToolbar>
 );
+export const ActionWithoutDelete = ({ basePath, data, resource }) => (
+  <TopToolbar>
+    <RefreshButton basePath={basePath} record={data} />
+    <ListButton basePath={basePath} record={data} />
+
+    <EditButton basePath={basePath} record={data} />
+  </TopToolbar>
+);
+export const ActionWithoutEdit = ({ basePath, data, resource }) => (
+  <TopToolbar>
+    <RefreshButton basePath={basePath} record={data} />
+    <ListButton basePath={basePath} record={data} />
+  </TopToolbar>
+);

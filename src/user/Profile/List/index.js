@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  List,
-  Datagrid,
-  TextField,
-  EditButton,
-  DeleteButton,
-  ShowButton,
-} from 'react-admin';
+import { List, Datagrid, TextField, EditButton, ShowButton } from 'react-admin';
 
 import { DateField } from '../../../components';
 
@@ -23,7 +16,6 @@ const ProfileList = (props) => {
         <ShowButton basePath='/profile' />
 
         <EditButton basePath='/profile' />
-        <DeleteButton basePath='/profile' />
       </Datagrid>
     </List>
   );

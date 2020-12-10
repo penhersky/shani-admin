@@ -22,6 +22,7 @@ const profile = {
     middleName
     location {
       id
+      name
     }
     description
     birthday

@@ -2,11 +2,14 @@ import React from 'react';
 import { Labeled, Link } from 'react-admin';
 import get from 'lodash/get';
 
-const DateField = ({ source, record = {}, label, root, content }) => {
+const RefField = ({ source, record = {}, label, root, rootKey, content }) => {
+  if (!get(record, source)?.id) return null;
   return (
     <Labeled label={label}>
       <Link
-        to={`/${get(get(record, source), root)}/${get(record, source).id}/show`}
+        to={`/${root ? root : get(get(record, source), rootKey)}/${
+          get(record, source)?.id
+        }/show`}
       >
         {get(get(record, source), content)}
       </Link>
@@ -14,4 +17,4 @@ const DateField = ({ source, record = {}, label, root, content }) => {
   );
 };
 
-export default DateField;
+export default RefField;
