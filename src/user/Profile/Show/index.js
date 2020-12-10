@@ -1,5 +1,13 @@
 import * as React from 'react';
-import { Show, SimpleShowLayout, TextField, Labeled } from 'react-admin';
+import {
+  Show,
+  SimpleShowLayout,
+  TextField,
+  Labeled,
+  ArrayField,
+  ReferenceField,
+  SingleFieldList,
+} from 'react-admin';
 
 import { DateField, RefField } from '../../../components';
 import { Action } from '../../../layout';
@@ -31,8 +39,23 @@ const ProfileShow = (props) => {
         <Labeled label='birthday'>
           <DateField source='birthday' />
         </Labeled>
-        {/* <TextField source='categoriesId' /> */}
+        {/* <ArrayField>
+          <ReferenceField
+            label='Category'
+            source='categoriesId'
+            reference='Category'
+          >
+            <TextField source='name' />
+          </ReferenceField>
+        </ArrayField> */}
         {/* <TextField source='contacts' /> */}
+        <ArrayField source='contacts'>
+          <SingleFieldList>
+            <ReferenceField label='Category' source='id' reference='Category'>
+              <TextField source='name' />
+            </ReferenceField>
+          </SingleFieldList>
+        </ArrayField>
         <Labeled label='updatedAt'>
           <DateField source='updatedAt' />
         </Labeled>

@@ -83,7 +83,15 @@ const buildQuery = (raFetchType, resourceName, params, lowName) => {
         variables: {
           id: params?.id,
           [lowName]: {
-            ...omit(params?.data, ['updatedAt', 'createdAt', '__typename']),
+            ...omit(params?.data, [
+              'updatedAt',
+              'createdAt',
+              '__typename',
+              'user',
+              'id',
+              'location',
+              'contacts',
+            ]),
           },
         },
         parseResponse: (response) => {

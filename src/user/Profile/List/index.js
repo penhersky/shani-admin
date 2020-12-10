@@ -3,7 +3,6 @@ import {
   List,
   Datagrid,
   TextField,
-  EmailField,
   EditButton,
   DeleteButton,
   ShowButton,
@@ -16,10 +15,10 @@ const ProfileList = (props) => {
     <List {...props} title='Profile'>
       <Datagrid>
         <TextField source='id' />
-        <TextField source='user.name' title='user' />
-        <EmailField source='firstName' />
-        <EmailField source='lastName' />
-        <EmailField source='middleName' />
+        <TextField source='user.name' label='User' />
+        <TextField source='firstName' />
+        <TextField source='lastName' />
+        <TextField source='middleName' />
         <DateField source='createdAt' />
         <ShowButton basePath='/profile' />
 

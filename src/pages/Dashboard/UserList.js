@@ -33,7 +33,7 @@ const NList = (props) => {
       pagination: { page: 1, perPage: 10 },
     },
   });
-  console.log(data);
+
   if (!loaded) return null;
 
   return (
