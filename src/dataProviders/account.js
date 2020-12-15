@@ -86,6 +86,7 @@ const buildQuery = (raFetchType, resourceName, params, lowName) => {
             ...omit(params?.data, [
               'updatedAt',
               'createdAt',
+              'profile',
               '__typename',
               'user',
               'id',
