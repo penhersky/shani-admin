@@ -3,6 +3,8 @@ import { Card, CardContent } from '@material-ui/core';
 
 import Welcome from './welcome';
 import Info from './info';
+import Settings from './settings';
+import Graph from './Graph';
 
 import './style.css';
 
@@ -11,7 +13,11 @@ const dashboard = () => (
     <Welcome />
     <Card>
       <CardContent className='d-content'>
-        <div className='graph'></div>
+        <div className='top'>
+          <Graph />
+          <Settings />
+        </div>
+
         <Info />
       </CardContent>
     </Card>

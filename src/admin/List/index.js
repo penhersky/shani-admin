@@ -7,7 +7,6 @@ import {
   EmailField,
   EditButton,
   DeleteButton,
-  ShowButton,
 } from 'react-admin';
 
 import { DateField } from '../../components';
@@ -16,13 +15,12 @@ import { allowedEdit } from '../../accessLevels';
 const adminList = (props) => {
   return (
     <List {...props} title='admins'>
-      <Datagrid>
+      <Datagrid rowClick='show'>
         <TextField source='id' />
         <TextField source='name' />
         <EmailField source='email' />
         <ChipField source='state' />
         <DateField source='createdAt' />
-        <ShowButton basePath='/admin' />
 
         <EditButton basePath='/admin' disabled={allowedEdit()} />
         <DeleteButton basePath='/admin' disabled={allowedEdit()} />

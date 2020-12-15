@@ -10,6 +10,7 @@ const providersList = [
       'AccountType',
       'Security',
       'Location',
+      'Settings',
     ],
   },
   {

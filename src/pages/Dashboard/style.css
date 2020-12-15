@@ -25,9 +25,43 @@
   flex-direction: column;
 }
 
-.d-content .graph {
+.d-content .top {
+  display: flex;
+  flex-flow: wrap row;
+  justify-content: space-between;
 }
+.d-content .top .graph {
+  border-radius: 5px;
+}
+
+.d-content .top .settings {
+  min-width: 320px;
+  width: 444px;
+  height: max-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: nowrap column;
+}
+
 .d-content .info {
   display: flex;
   flex-flow: nowrap row;
+}
+
+form {
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-flow: nowrap column;
+  overflow: hidden;
+}
+
+.d-button {
+  width: 100%;
+}
+
+.d-margin {
+  margin: 5px;
 }
