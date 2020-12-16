@@ -102,7 +102,7 @@ const Settings = (props: any) => {
       </div>
       <Divider />
       {loaded ? (
-        <form>
+        <form className='form'>
           <TextField
             value={status}
             label='Status'

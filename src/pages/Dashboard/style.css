@@ -49,7 +49,7 @@
   flex-flow: nowrap row;
 }
 
-form {
+.form {
   padding: 16px;
   display: flex;
   justify-content: center;
