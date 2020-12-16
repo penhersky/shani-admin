@@ -3,7 +3,7 @@ import { Labeled, Link } from 'react-admin';
 import get from 'lodash/get';
 
 const RefField = ({ source, record = {}, label, root, rootKey, content }) => {
-  if (!get(record, source)?.id) return null;
+  if (!get(record, source)) return null;
   return (
     <Labeled label={label}>
       <Link

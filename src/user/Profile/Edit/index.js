@@ -23,7 +23,7 @@ const EditAdmin = (props) => {
         <TextInput source='firstName' />
         <TextInput source='lastName' />
         <TextInput source='middleName' />
-        <TextInput source='description' />
+        <TextInput source='description' spellCheck />
         <DateInput source='birthday' />
         <ArrayInput source='categoriesId'>
           <SimpleFormIterator>
