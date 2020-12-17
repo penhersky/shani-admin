@@ -14,6 +14,7 @@ import accountType from '../user/AccountType';
 import security from '../user/Security';
 import contacts from '../user/Contacts';
 import location from '../user/Location';
+import image from '../user/Images';
 
 import SubMenu from './SubMenu';
 
@@ -68,6 +69,14 @@ const Menu = ({ onMenuClick, logout, dense = false }) => {
             to={`/profile`}
             primaryText={`profiles`}
             leftIcon={<profile.icon />}
+            onClick={onMenuClick}
+            sidebarIsOpen={open}
+            dense={dense}
+          />
+          <MenuItemLink
+            to={`/image`}
+            primaryText={`images`}
+            leftIcon={<image.icon />}
             onClick={onMenuClick}
             sidebarIsOpen={open}
             dense={dense}

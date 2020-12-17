@@ -21,6 +21,7 @@ import {
   Performer,
   Profile,
   Security,
+  Images,
 } from './user';
 
 import theme from './theme';
@@ -63,6 +64,7 @@ const App = () => {
       <Resource name='Customer' {...Customer} />
       <Resource name='Performer' {...Performer} />
       <Resource name='Profile' {...Profile} />
+      <Resource name='Image' {...Images} />
       <Resource name='Contact' {...Contacts} />
       <Resource name='AccountType' {...AccountType} />
       <Resource name='Security' {...Security} />

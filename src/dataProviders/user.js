@@ -11,7 +11,11 @@ const buildQuery = (raFetchType, resourceName, params, lowName) => {
                         id
                         name
                         email
-                        image
+                        images {
+                          id
+                          Location
+                          active
+                        }
                         provider
                         type
                         active
@@ -74,7 +78,10 @@ const buildQuery = (raFetchType, resourceName, params, lowName) => {
                         id
                         name
                         email
-                        image
+                        images {
+                          Location
+                          active
+                        }
                         active
                         createdAt
                       }

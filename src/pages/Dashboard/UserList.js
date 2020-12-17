@@ -54,7 +54,12 @@ const NList = (props) => {
               >
                 <ListItemAvatar>
                   <Avatar
-                    src={`${record.image ?? record?.imageUrl}?size=32x32`}
+                    src={`${
+                      props.type === 'Admin'
+                        ? record?.imageUrl
+                        : record?.images?.find((image) => image.active)
+                            ?.Location
+                    }?size=32x32`}
                   />
                 </ListItemAvatar>
                 <ListItemText primary={`${record.name} ${record.email}`} />

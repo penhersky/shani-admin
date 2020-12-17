@@ -11,6 +11,7 @@ const providersList = [
       'Security',
       'Location',
       'Settings',
+      'Image',
     ],
   },
   {
