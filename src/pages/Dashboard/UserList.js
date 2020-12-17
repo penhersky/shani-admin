@@ -50,6 +50,11 @@ const NList = (props) => {
                 button
                 to={`/${props.type}/${record.id}`}
                 component={Link}
+                style={{
+                  borderLeft: `solid 2px ${
+                    record?.active ? '#0FAE71' : 'white'
+                  }`,
+                }}
                 key={record.id}
               >
                 <ListItemAvatar>
