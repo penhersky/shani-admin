@@ -15,6 +15,7 @@ const buildQuery = (raFetchType, resourceName, params, lowName) => {
                         provider
                         type
                         active
+                        createdAt
                         images {
                           id
                           Location
@@ -26,6 +27,7 @@ const buildQuery = (raFetchType, resourceName, params, lowName) => {
                           lastName
                           middleName
                           location {
+                            id
                             name
                             lat
                             lng
@@ -40,6 +42,7 @@ const buildQuery = (raFetchType, resourceName, params, lowName) => {
                             icon
                             show
                           }
+                          createdAt
                         }
                         accountType {
                           id
