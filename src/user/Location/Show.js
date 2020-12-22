@@ -7,7 +7,7 @@ import {
   NumberField,
 } from 'react-admin';
 
-import { DateField, LongRef, Map } from '../../components';
+import { DateField, RefField, Map } from '../../components';
 import { ActionWithoutDelete } from '../../layout/Action';
 
 const PostTitle = ({ record }) => <span>Location</span>;
@@ -16,13 +16,7 @@ const ShowLocation = (props) => (
   <Show {...props} actions={<ActionWithoutDelete />} title={<PostTitle />}>
     <SimpleShowLayout>
       <TextField source='id' />
-      <LongRef
-        source='user'
-        rootSource='profile'
-        label='User'
-        rootKey='type'
-        content='name'
-      />
+      <RefField source='user' label='User' content='name' />
       <TextField source='name' />
 
       <NumberField source='lat' />

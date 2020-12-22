@@ -1,10 +1,8 @@
 const admin = {
   short: `
     id
-    profile {
-      user {
-        name
-      }
+    user {
+      name
     }
     name
     value
@@ -12,11 +10,9 @@ const admin = {
   `,
   large: `
     id
-    profile {
-      user {
-        id
-        name
-      }
+    user {
+      id
+      name
     }
     name
     value

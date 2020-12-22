@@ -52,9 +52,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const User = (props) => {
-  const [{ profile, ...user }, setUser] = React.useState({ profile: {} });
+  const [user, setUser] = React.useState({});
   const classes = useStyles(props);
-  const birthday = new Date(Number(profile?.birthday));
+  const birthday = new Date(Number(user?.birthday));
 
   React.useEffect(() => {
     if (props.record.user) setUser(props.record.user);
@@ -69,29 +69,31 @@ const User = (props) => {
         />
         <Box className={classes.left}>
           <Typography variant='h4'>{user?.name}</Typography>
-          <Typography variant='h6'>{`${profile?.firstName ?? ''} ${
-            profile?.middleName ?? ''
-          } ${profile?.lastName ?? ''}`}</Typography>
-          <Typography variant='subtitle1'>{user.email}</Typography>
+          <Typography variant='h6'>{`${user?.firstName ?? ''} ${
+            user?.middleName ?? ''
+          } ${user?.lastName ?? ''}`}</Typography>
+          <Typography variant='subtitle1'>{user?.email}</Typography>
           <Typography
             className={classes.active}
-            style={{ border: `solid 1px ${user.active ? '#0FAE71' : 'white'}` }}
+            style={{
+              border: `solid 1px ${user?.active ? '#0FAE71' : 'white'}`,
+            }}
           >
             {user.active ? 'confirmed' : 'not confirmed'}
           </Typography>
 
           <Typography variant='subtitle1'>
-            {profile?.birthday ? birthday.toLocaleDateString() : null}
+            {user?.birthday ? birthday.toLocaleDateString() : null}
           </Typography>
           <Typography variant='subtitle1'>
-            {profile?.location?.name ? profile?.location?.name : null}
+            {user?.location?.name ? user?.location?.name : null}
           </Typography>
         </Box>
       </Card>
 
       <Card className={classes.contacts}>
         <Typography variant='h6'>Contacts</Typography>
-        {_.map(profile?.contacts, (contact) => (
+        {_.map(user?.contacts, (contact) => (
           <a href={contact?.value} key={contact?.id}>
             <div className={classes.contact}>
               <Typography className={classes.contact}>

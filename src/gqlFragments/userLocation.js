@@ -1,10 +1,8 @@
 const location = {
   short: `
     id
-    profile {
-      user {
-        name
-      }
+    user {
+      name
     }
     name
     lat
@@ -12,12 +10,10 @@ const location = {
   `,
   large: `
     id
-    profile {
-      user {
-        id
-        name
-        type
-      }
+    user {
+      id
+      name
+      type
     }
     name
     lat

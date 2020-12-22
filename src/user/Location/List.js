@@ -6,7 +6,7 @@ const LocationList = (props) => {
     <List {...props} title='Locations'>
       <Datagrid rowClick='show'>
         <TextField source='id' />
-        <TextField source='profile.user.name' label='User' />
+        <TextField source='user.name' label='User' />
         <TextField source='name' />
         <TextField source='lat' />
         <TextField source='lng' />

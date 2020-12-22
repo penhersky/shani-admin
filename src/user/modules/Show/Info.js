@@ -15,10 +15,10 @@ const Info = (props) => {
   const [profile, setProfile] = React.useState({});
   const classes = useStyles(props);
   React.useEffect(() => {
-    if (props.record.user) setProfile(props.record.user.profile);
+    if (props.record.user) setProfile(props.record.user);
   }, [props.record, setProfile]);
   const created = new Date(Number(props?.record?.user?.createdAt));
-  const confirmed = new Date(Number(profile?.createdAt));
+  const confirmed = new Date(Number(props?.record?.security?.createdAt));
   return (
     <Card className={classes.info}>
       <Typography variant='body2'>{`created: ${created.toDateString()} ${created.toTimeString()}`}</Typography>

@@ -9,6 +9,7 @@ import buildQuery from './buildGraphQLProvider';
 import authProvider from './authProvider';
 
 import { Dashboard } from './pages';
+import { Loading } from './components';
 
 import { Login, Layout } from './layout';
 
@@ -19,7 +20,6 @@ import {
   Customer,
   Location,
   Performer,
-  Profile,
   Security,
   Images,
 } from './user';
@@ -48,7 +48,7 @@ const App = () => {
     }
   }, [provider]);
   if (!provider) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
   return (
     <Admin
@@ -63,7 +63,6 @@ const App = () => {
       {/* user */}
       <Resource name='Customer' {...Customer} />
       <Resource name='Performer' {...Performer} />
-      <Resource name='Profile' {...Profile} />
       <Resource name='Image' {...Images} />
       <Resource name='Contact' {...Contacts} />
       <Resource name='AccountType' {...AccountType} />

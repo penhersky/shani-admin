@@ -1,4 +1,4 @@
-import { pick } from 'lodash';
+import { omit } from 'lodash';
 import { GET_LIST, GET_ONE, UPDATE } from 'react-admin';
 import gql from 'graphql-tag';
 
@@ -15,34 +15,30 @@ const buildQuery = (raFetchType, resourceName, params, lowName) => {
                         provider
                         type
                         active
+                        firstName
+                        lastName
+                        middleName
+                        description
+                        birthday
+                        categoriesId
                         createdAt
                         images {
                           id
                           Location
                           active
                         }
-                        profile {
+                        location {
                           id
-                          firstName
-                          lastName
-                          middleName
-                          location {
-                            id
-                            name
-                            lat
-                            lng
-                          }
-                          description
-                          birthday
-                          categoriesId
-                          contacts {
-                            id
-                            name
-                            value
-                            icon
-                            show
-                          }
-                          createdAt
+                          name
+                          lat
+                          lng
+                        }
+                        contacts {
+                          id
+                          name
+                          value
+                          icon
+                          show
                         }
                         accountType {
                           id
@@ -127,12 +123,15 @@ const buildQuery = (raFetchType, resourceName, params, lowName) => {
         variables: {
           id: params?.id,
           user: {
-            ...pick(params?.data.user, [
-              'name',
-              'email',
-              'provider',
-              'type',
-              'active',
+            ...omit(params?.data.user, [
+              'id',
+              'updatedAt',
+              'createdAt',
+              'images',
+              'accountType',
+              '__typename',
+              'location',
+              'contacts',
             ]),
           },
         },

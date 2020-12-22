@@ -9,7 +9,6 @@ import FolderSharedIcon from '@material-ui/icons/FolderShared';
 import customer from '../user/customer';
 import performer from '../user/performer';
 import admin from '../admin';
-import profile from '../user/Profile';
 import accountType from '../user/AccountType';
 import security from '../user/Security';
 import contacts from '../user/Contacts';
@@ -65,14 +64,6 @@ const Menu = ({ onMenuClick, logout, dense = false }) => {
           icon={<FolderSharedIcon />}
           dense={dense}
         >
-          <MenuItemLink
-            to={`/profile`}
-            primaryText={`profiles`}
-            leftIcon={<profile.icon />}
-            onClick={onMenuClick}
-            sidebarIsOpen={open}
-            dense={dense}
-          />
           <MenuItemLink
             to={`/image`}
             primaryText={`images`}

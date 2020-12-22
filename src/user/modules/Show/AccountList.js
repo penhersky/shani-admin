@@ -5,7 +5,6 @@ import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import {
-  Profile as p,
   AccountType as a,
   Contacts as c,
   Images as i,
@@ -46,10 +45,6 @@ const List = (props) => {
 
   return (
     <div className={classes.list}>
-      <Link className={classes.item} to={`/Profile/${user?.profile?.id}/show`}>
-        <p.icon />
-        <Typography>profile</Typography>
-      </Link>
       <Link className={classes.item} to={`/image/`}>
         <i.icon />
         <Typography>images</Typography>
@@ -71,7 +66,7 @@ const List = (props) => {
       </Link>
       <Link
         className={classes.item}
-        to={`/location/${user?.profile?.location?.id}/show`}
+        to={`/location/${user?.location?.id}/show`}
       >
         <l.icon />
         <Typography>Location</Typography>

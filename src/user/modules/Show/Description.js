@@ -14,7 +14,7 @@ const Description = (props) => {
   const [ds, setDs] = React.useState('');
   const classes = useStyles(props);
   React.useEffect(() => {
-    if (props.record.user) setDs(props.record.user.profile?.description);
+    if (props.record.user) setDs(props.record?.user?.description);
   }, [props.record, setDs]);
 
   return (

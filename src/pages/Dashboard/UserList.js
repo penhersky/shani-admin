@@ -48,7 +48,7 @@ const NList = (props) => {
           ? data.map((record) => (
               <ListItem
                 button
-                to={`/${props.type}/${record.id}`}
+                to={`/${props.type}/${record.id}/Show`}
                 component={Link}
                 style={{
                   borderLeft: `solid 2px ${

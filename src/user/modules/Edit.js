@@ -7,6 +7,9 @@ import {
   TextInput,
   Toolbar,
   SaveButton,
+  DateInput,
+  ArrayInput,
+  SimpleFormIterator,
 } from 'react-admin';
 
 const EditToolbar = (props) => (
@@ -31,6 +34,16 @@ const EditUser = (props) => {
         <TextInput source='user.email' required label='email' />
         <TextInput source='user.name' required label='name' />
         <TextInput source='user.provider' required label='provider' />
+        <TextInput source='user.firstName' label='firstName' />
+        <TextInput source='user.lastName' label='lastName' />
+        <TextInput source='user.middleName' label='middleName' />
+        <TextInput source='user.description' label='description' spellCheck />
+        <DateInput source='user.birthday' label='birthday' />
+        <ArrayInput source='user.categoriesId' label='categoriesId'>
+          <SimpleFormIterator>
+            <TextInput placeholder='category id' required />
+          </SimpleFormIterator>
+        </ArrayInput>
         <BooleanInput source='user.active' label='active' />
       </SimpleForm>
     </Edit>
