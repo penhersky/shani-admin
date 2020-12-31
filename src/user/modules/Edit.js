@@ -41,7 +41,7 @@ const EditUser = (props) => {
         <DateInput source='user.birthday' label='birthday' />
         <ArrayInput source='user.categoriesId' label='categoriesId'>
           <SimpleFormIterator>
-            <TextInput placeholder='category id' required />
+            <TextInput placeholder='category id' label='id' required />
           </SimpleFormIterator>
         </ArrayInput>
         <BooleanInput source='user.active' label='active' />

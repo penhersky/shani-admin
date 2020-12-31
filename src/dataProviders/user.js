@@ -77,7 +77,7 @@ const buildQuery = (raFetchType, resourceName, params, lowName) => {
                       page
                       limit
                       totalPages
-                      ${String(resourceName).toLocaleLowerCase()}s {
+                      users {
                         id
                         name
                         email
@@ -100,7 +100,7 @@ const buildQuery = (raFetchType, resourceName, params, lowName) => {
         },
         parseResponse: (response) => {
           return {
-            data: response?.data[`get${resourceName}s`][`${lowName}s`],
+            data: response?.data[`get${resourceName}s`][`users`],
             total: response?.data[`get${resourceName}s`]?.totalItems,
             page: response?.data[`get${resourceName}s`]?.page,
           };

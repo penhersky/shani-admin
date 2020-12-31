@@ -1,8 +1,26 @@
-import { account, user } from './dataProviders';
+import { ApolloClient, InMemoryCache } from '@apollo/client';
+import { account, user, main } from './dataProviders';
+
+const accountClient = new ApolloClient({
+  uri: `${process.env.REACT_APP_ACCOUNT_SERVER_URL}/graphql`,
+  cache: new InMemoryCache(),
+  headers: {
+    'x-admin-security-token-x': localStorage.getItem('token'),
+  },
+});
+
+const serviceClient = new ApolloClient({
+  uri: `${process.env.REACT_APP_ACCOUNT_SERVER_URL}/graphql`,
+  cache: new InMemoryCache(),
+  headers: {
+    'x-service-security-token-x': localStorage.getItem('service_token'),
+  },
+});
 
 const providersList = [
   {
     dataProvider: account,
+    client: accountClient,
     resources: [
       'Admin',
       'Profile',
@@ -16,7 +34,13 @@ const providersList = [
   },
   {
     dataProvider: user,
+    client: accountClient,
     resources: ['Performer', 'Customer'],
+  },
+  {
+    dataProvider: main,
+    client: serviceClient,
+    resources: ['Category'],
   },
 ];
 

@@ -23,6 +23,7 @@ import {
   Security,
   Images,
 } from './user';
+import show from './user/modules/Show';
 
 import theme from './theme';
 
@@ -47,6 +48,7 @@ const App = () => {
       }).then((newProvider) => setProvider(() => newProvider));
     }
   }, [provider]);
+
   if (!provider) {
     return <Loading />;
   }
@@ -61,8 +63,8 @@ const App = () => {
       theme={theme}
     >
       {/* user */}
+      <Resource name='Performer' {...Performer} show={show} />
       <Resource name='Customer' {...Customer} />
-      <Resource name='Performer' {...Performer} />
       <Resource name='Image' {...Images} />
       <Resource name='Contact' {...Contacts} />
       <Resource name='AccountType' {...AccountType} />

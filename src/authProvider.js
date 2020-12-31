@@ -1,3 +1,5 @@
+const isDev = process.env.NODE_ENV === 'development';
+
 const LOGIN = (email, pass) => `
   query {
     adminLogin(email: "${email}", password: "${pass}") {
@@ -13,12 +15,14 @@ const LOGIN = (email, pass) => `
       createdAt
     }
     token
+    serviceToken
   }
 }
 `;
 
 const clearStorage = () => {
   localStorage.removeItem('token');
+  localStorage.removeItem('service_token');
   localStorage.removeItem('exp_d_t');
   localStorage.removeItem('permissions');
 };
@@ -42,8 +46,17 @@ const provider = {
       console.log(data);
       if (!data?.data?.adminLogin?.token) return Promise.reject();
       localStorage.setItem('token', data?.data?.adminLogin?.token);
+      localStorage.setItem(
+        'service_token',
+        data?.data?.adminLogin?.serviceToken,
+      );
       const date = new Date();
-      localStorage.setItem('exp_d_t', date.setHours(date.getHours() + 24));
+      localStorage.setItem(
+        'exp_d_t',
+        date.setHours(
+          isDev ? date.getHours() + 24 * 31 : date.getHours() + 24 * 3,
+        ),
+      );
       localStorage.setItem(
         'permissions',
         JSON.stringify(data?.data?.adminLogin?.admin),

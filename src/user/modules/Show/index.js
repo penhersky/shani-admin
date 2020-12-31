@@ -18,13 +18,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PostTitle = ({ record }) => (
+const UserTitle = ({ record }) => (
   <span>{record.user ? record.user.name : ''}</span>
 );
 const ShowUser = (props) => {
   const classes = useStyles(props);
   return (
-    <Show {...props} title={<PostTitle />} actions={<ActionWithoutDelete />}>
+    <Show {...props} title={<UserTitle />} actions={<ActionWithoutDelete />}>
       <SimpleShowLayout className={classes.content}>
         <AccountList />
         <User source='user' />
