@@ -10,7 +10,7 @@ const accountClient = new ApolloClient({
 });
 
 const serviceClient = new ApolloClient({
-  uri: `${process.env.REACT_APP_ACCOUNT_SERVER_URL}/graphql`,
+  uri: `${process.env.REACT_APP_MAIN_SERVER_URL}/graphql`,
   cache: new InMemoryCache(),
   headers: {
     'x-service-security-token-x': localStorage.getItem('service_token'),
@@ -44,7 +44,7 @@ const providersList = [
   },
 ];
 
-const buildQuery = (introspectionResults) => (
+const buildQuery = (setClient) => (introspectionResults) => (
   raFetchType,
   resourceName,
   params,
@@ -54,6 +54,8 @@ const buildQuery = (introspectionResults) => (
     p.resources.includes(resourceName),
   );
   const lowName = String(resourceName).toLowerCase();
+
+  setClient(provider.client);
 
   return provider.dataProvider(raFetchType, resourceName, params, lowName);
 };

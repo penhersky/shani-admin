@@ -23,6 +23,7 @@ import {
   Security,
   Images,
 } from './user';
+import { Category } from './main';
 import show from './user/modules/Show';
 
 import theme from './theme';
@@ -32,22 +33,28 @@ const messages = {
 };
 const i18nProvider = polyglotI18nProvider((locale) => messages[locale]);
 
+const defaultClient = new ApolloClient({
+  uri: `${process.env.REACT_APP_ACCOUNT_SERVER_URL}/graphql`,
+  cache: new InMemoryCache(),
+  headers: {
+    'x-admin-security-token-x': localStorage.getItem('token'),
+  },
+});
+
 const App = () => {
   const [provider, setProvider] = React.useState();
+  const [client, setClient] = React.useState(defaultClient);
+
+  const onChangeClientHandler = (client) => setClient(client);
+  console.log(client);
   React.useEffect(() => {
     if (!provider) {
       buildGraphQLProvider({
-        buildQuery,
-        client: new ApolloClient({
-          uri: `${process.env.REACT_APP_ACCOUNT_SERVER_URL}/graphql`,
-          cache: new InMemoryCache(),
-          headers: {
-            'x-admin-security-token-x': localStorage.getItem('token'),
-          },
-        }),
+        buildQuery: buildQuery(onChangeClientHandler),
+        client: client,
       }).then((newProvider) => setProvider(() => newProvider));
     }
-  }, [provider]);
+  }, [provider, client]);
 
   if (!provider) {
     return <Loading />;
@@ -62,6 +69,8 @@ const App = () => {
       layout={Layout}
       theme={theme}
     >
+      {/* main */}
+      <Resource name='Category' {...Category} />
       {/* user */}
       <Resource name='Performer' {...Performer} show={show} />
       <Resource name='Customer' {...Customer} />
