@@ -9,7 +9,7 @@ import {
 } from 'react-admin';
 import gql from 'graphql-tag';
 
-import * as fragments from '../gqlFragments';
+import * as fragments from '../gqlFragments/main';
 
 const buildQuery = (raFetchType, resourceName, params, lowName) => {
   switch (raFetchType) {

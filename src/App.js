@@ -33,55 +33,68 @@ const messages = {
 };
 const i18nProvider = polyglotI18nProvider((locale) => messages[locale]);
 
-const defaultClient = new ApolloClient({
-  uri: `${process.env.REACT_APP_ACCOUNT_SERVER_URL}/graphql`,
-  cache: new InMemoryCache(),
-  headers: {
-    'x-admin-security-token-x': localStorage.getItem('token'),
-  },
-});
-
 const App = () => {
   const [provider, setProvider] = React.useState();
-  const [client, setClient] = React.useState(defaultClient);
+  // const [main, setMain] = React.useState();
 
-  const onChangeClientHandler = (client) => setClient(client);
-  console.log(client);
   React.useEffect(() => {
     if (!provider) {
       buildGraphQLProvider({
-        buildQuery: buildQuery(onChangeClientHandler),
-        client: client,
+        buildQuery,
+        client: new ApolloClient({
+          uri: `${process.env.REACT_APP_ACCOUNT_SERVER_URL}/graphql`,
+          cache: new InMemoryCache(),
+          headers: {
+            'x-admin-security-token-x': localStorage.getItem('token'),
+          },
+        }),
       }).then((newProvider) => setProvider(() => newProvider));
     }
-  }, [provider, client]);
+  }, [provider]);
+
+  // React.useEffect(() => {
+  //   if (!main) {
+  //     buildGraphQLProvider({
+  //       buildQuery,
+  //       client: new ApolloClient({
+  //         uri: `${process.env.REACT_APP_MAIN_SERVER_URL}/graphql`,
+  //         cache: new InMemoryCache(),
+  //         headers: {
+  //           'x-service-security-token-x': localStorage.getItem('service_token'),
+  //         },
+  //       }),
+  //     }).then((newProvider) => setMain(() => newProvider));
+  //   }
+  // }, [main]);
 
   if (!provider) {
     return <Loading />;
   }
   return (
-    <Admin
-      dataProvider={provider}
-      authProvider={authProvider}
-      i18nProvider={i18nProvider}
-      dashboard={Dashboard}
-      loginPage={Login}
-      layout={Layout}
-      theme={theme}
-    >
-      {/* main */}
-      <Resource name='Category' {...Category} />
-      {/* user */}
-      <Resource name='Performer' {...Performer} show={show} />
-      <Resource name='Customer' {...Customer} />
-      <Resource name='Image' {...Images} />
-      <Resource name='Contact' {...Contacts} />
-      <Resource name='AccountType' {...AccountType} />
-      <Resource name='Security' {...Security} />
-      <Resource name='Location' {...Location} />
-      {/* admin */}
-      <Resource name='Admin' {...admin} />
-    </Admin>
+    <>
+      <Admin
+        dataProvider={provider}
+        authProvider={authProvider}
+        i18nProvider={i18nProvider}
+        dashboard={Dashboard}
+        loginPage={Login}
+        layout={Layout}
+        theme={theme}
+      >
+        {/* main */}
+        <Resource name='Category' {...Category} />
+        {/* user */}
+        <Resource name='Performer' {...Performer} show={show} />
+        <Resource name='Customer' {...Customer} />
+        <Resource name='Image' {...Images} />
+        <Resource name='Contact' {...Contacts} />
+        <Resource name='AccountType' {...AccountType} />
+        <Resource name='Security' {...Security} />
+        <Resource name='Location' {...Location} />
+        {/* admin */}
+        <Resource name='Admin' {...admin} />
+      </Admin>
+    </>
   );
 };
 

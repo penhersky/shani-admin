@@ -80,7 +80,7 @@ const Menu = ({ onMenuClick, logout, dense = false }) => {
           handleToggle={() => handleToggle('userFolder')}
           isOpen={state.userFolder}
           sidebarIsOpen={open}
-          name='UserData'
+          name='User Data'
           icon={<FolderSharedIcon />}
           dense={dense}
         >
@@ -102,7 +102,7 @@ const Menu = ({ onMenuClick, logout, dense = false }) => {
           />
           <MenuItemLink
             to={`/accountType`}
-            primaryText={`accountTypes`}
+            primaryText={`Account Types`}
             leftIcon={<accountType.icon />}
             onClick={onMenuClick}
             sidebarIsOpen={open}

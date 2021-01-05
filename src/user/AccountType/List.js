@@ -3,9 +3,9 @@ import { List, Datagrid, TextField } from 'react-admin';
 
 import { DateField } from '../../components';
 
-const ContactsList = (props) => {
+const AccountTypesList = (props) => {
   return (
-    <List {...props} title='Contacts'>
+    <List {...props} title='AccountTypes'>
       <Datagrid rowClick='edit'>
         <TextField source='id' />
         <TextField source='user.name' label='User' />
@@ -17,4 +17,4 @@ const ContactsList = (props) => {
   );
 };
 
-export default ContactsList;
+export default AccountTypesList;

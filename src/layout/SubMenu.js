@@ -56,7 +56,12 @@ const SubMenu = ({
           {header}
         </Tooltip>
       )}
-      <Collapse in={isOpen} timeout='auto' unmountOnExit>
+      <Collapse
+        in={isOpen}
+        timeout='auto'
+        unmountOnExit
+        style={{ marginLeft: 10 }}
+      >
         <List
           dense={dense}
           component='div'

@@ -1,26 +1,9 @@
-import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { account, user, main } from './dataProviders';
-
-const accountClient = new ApolloClient({
-  uri: `${process.env.REACT_APP_ACCOUNT_SERVER_URL}/graphql`,
-  cache: new InMemoryCache(),
-  headers: {
-    'x-admin-security-token-x': localStorage.getItem('token'),
-  },
-});
-
-const serviceClient = new ApolloClient({
-  uri: `${process.env.REACT_APP_MAIN_SERVER_URL}/graphql`,
-  cache: new InMemoryCache(),
-  headers: {
-    'x-service-security-token-x': localStorage.getItem('service_token'),
-  },
-});
 
 const providersList = [
   {
     dataProvider: account,
-    client: accountClient,
+    client: 'account',
     resources: [
       'Admin',
       'Profile',
@@ -34,17 +17,17 @@ const providersList = [
   },
   {
     dataProvider: user,
-    client: accountClient,
+    client: 'account',
     resources: ['Performer', 'Customer'],
   },
   {
     dataProvider: main,
-    client: serviceClient,
+    client: 'main',
     resources: ['Category'],
   },
 ];
 
-const buildQuery = (setClient) => (introspectionResults) => (
+const buildQuery = (introspectionResults) => (
   raFetchType,
   resourceName,
   params,
@@ -54,8 +37,6 @@ const buildQuery = (setClient) => (introspectionResults) => (
     p.resources.includes(resourceName),
   );
   const lowName = String(resourceName).toLowerCase();
-
-  setClient(provider.client);
 
   return provider.dataProvider(raFetchType, resourceName, params, lowName);
 };
