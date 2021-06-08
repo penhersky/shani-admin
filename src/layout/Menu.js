@@ -1,20 +1,30 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useMediaQuery, Box } from '@material-ui/core';
-import { MenuItemLink, DashboardMenuItem, useTranslate } from 'react-admin';
+import { MenuItemLink, DashboardMenuItem } from 'react-admin';
 import { withRouter } from 'react-router-dom';
+import { People } from '@material-ui/icons';
+import FolderSharedIcon from '@material-ui/icons/FolderShared';
+import HomeIcon from '@material-ui/icons/Home';
 
-import user from '../users';
+import customer from '../user/customer';
+import performer from '../user/performer';
 import admin from '../admin';
+import accountType from '../user/AccountType';
+import security from '../user/Security';
+import contacts from '../user/Contacts';
+import location from '../user/Location';
+import image from '../user/Images';
+
+import { Category as category } from '../main';
 
 import SubMenu from './SubMenu';
 
 const Menu = ({ onMenuClick, logout, dense = false }) => {
-  const translate = useTranslate();
   const [state, setState] = useState({
-    menuCatalog: true,
-    menuSales: true,
-    menuCustomers: true,
+    userFolder: true,
+    user: true,
+    main: true,
   });
   const isXSmall = useMediaQuery((theme) => theme.breakpoints.down('xs'));
   const open = useSelector((state) => state.admin.ui.sidebarOpen);
@@ -26,29 +36,99 @@ const Menu = ({ onMenuClick, logout, dense = false }) => {
     <Box mt={1}>
       <DashboardMenuItem onClick={onMenuClick} sidebarIsOpen={open} />
       <SubMenu
-        handleToggle={() => handleToggle('menuSales')}
-        isOpen={state.menuSales}
+        handleToggle={() => handleToggle('main')}
+        isOpen={state.main}
         sidebarIsOpen={open}
-        name='users'
-        icon={<user.icon />}
+        name='Main'
+        icon={<HomeIcon />}
         dense={dense}
       >
         <MenuItemLink
-          to={`/users`}
-          primaryText={translate(`users`, {
-            smart_count: 2,
-          })}
-          leftIcon={<user.icon />}
+          to={`/category`}
+          primaryText={`categories`}
+          leftIcon={<category.icon />}
           onClick={onMenuClick}
           sidebarIsOpen={open}
           dense={dense}
         />
       </SubMenu>
+      <SubMenu
+        handleToggle={() => handleToggle('user')}
+        isOpen={state.user}
+        sidebarIsOpen={open}
+        name='users'
+        icon={<People />}
+        dense={dense}
+      >
+        <MenuItemLink
+          to={`/customer`}
+          primaryText={`customers`}
+          leftIcon={<customer.icon />}
+          onClick={onMenuClick}
+          sidebarIsOpen={open}
+          dense={dense}
+        />
+        <MenuItemLink
+          to={`/performer`}
+          primaryText={`performers`}
+          leftIcon={<performer.icon />}
+          onClick={onMenuClick}
+          sidebarIsOpen={open}
+          dense={dense}
+        />
+        <SubMenu
+          handleToggle={() => handleToggle('userFolder')}
+          isOpen={state.userFolder}
+          sidebarIsOpen={open}
+          name='User Data'
+          icon={<FolderSharedIcon />}
+          dense={dense}
+        >
+          <MenuItemLink
+            to={`/image`}
+            primaryText={`images`}
+            leftIcon={<image.icon />}
+            onClick={onMenuClick}
+            sidebarIsOpen={open}
+            dense={dense}
+          />
+          <MenuItemLink
+            to={`/contact`}
+            primaryText={`contacts`}
+            leftIcon={<contacts.icon />}
+            onClick={onMenuClick}
+            sidebarIsOpen={open}
+            dense={dense}
+          />
+          <MenuItemLink
+            to={`/accountType`}
+            primaryText={`Account Types`}
+            leftIcon={<accountType.icon />}
+            onClick={onMenuClick}
+            sidebarIsOpen={open}
+            dense={dense}
+          />
+          <MenuItemLink
+            to={`/security`}
+            primaryText={`security`}
+            leftIcon={<security.icon />}
+            onClick={onMenuClick}
+            sidebarIsOpen={open}
+            dense={dense}
+          />
+          <MenuItemLink
+            to={`/location`}
+            primaryText={`locations`}
+            leftIcon={<location.icon />}
+            onClick={onMenuClick}
+            sidebarIsOpen={open}
+            dense={dense}
+          />
+        </SubMenu>
+      </SubMenu>
       <MenuItemLink
-        to={`/admins`}
-        primaryText={translate(`admins`, {
-          smart_count: 2,
-        })}
+        to={`/admin`}
+        primaryText={`admins`}
         leftIcon={<admin.icon />}
         onClick={onMenuClick}
         sidebarIsOpen={open}

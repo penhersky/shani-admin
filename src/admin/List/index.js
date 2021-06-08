@@ -3,25 +3,27 @@ import {
   List,
   Datagrid,
   TextField,
-  ImageField,
+  ChipField,
   EmailField,
-  // EditButton,
-  // DeleteButton,
+  EditButton,
+  DeleteButton,
 } from 'react-admin';
+
+import { DateField } from '../../components';
+import { allowedEdit } from '../../accessLevels';
 
 const adminList = (props) => {
   return (
     <List {...props} title='admins'>
-      <Datagrid>
+      <Datagrid rowClick='show'>
         <TextField source='id' />
         <TextField source='name' />
         <EmailField source='email' />
-        <TextField source='state' />
-        <ImageField source='imageUrl' />
-        <TextField source='updatedAt' />
-        <TextField source='createdAt' />
-        {/* <EditButton basePath='/users' />
-        <DeleteButton basePath='/users' /> */}
+        <ChipField source='state' />
+        <DateField source='createdAt' />
+
+        <EditButton basePath='/admin' disabled={allowedEdit()} />
+        <DeleteButton basePath='/admin' disabled={allowedEdit()} />
       </Datagrid>
     </List>
   );

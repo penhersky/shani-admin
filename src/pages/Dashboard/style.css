@@ -1,0 +1,67 @@
+.welcome {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  color: white;
+  background-image: url('./img.jpg');
+  background-size: auto;
+  background-position: left;
+  background-repeat: repeat;
+  border-radius: 5px;
+  margin: 5px 0;
+}
+
+.welcome h1 {
+  font-size: 50px;
+  color: rgba(255, 255, 255, 0.816);
+  font-family: 'Dancing Script', cursive;
+}
+
+.d-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.d-content .top {
+  display: flex;
+  flex-flow: wrap row;
+  justify-content: space-between;
+}
+.d-content .top .graph {
+  border-radius: 5px;
+}
+
+.d-content .top .settings {
+  min-width: 320px;
+  width: 444px;
+  height: max-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: nowrap column;
+}
+
+.d-content .info {
+  display: flex;
+  flex-flow: nowrap row;
+}
+
+.form {
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-flow: nowrap column;
+  overflow: hidden;
+}
+
+.d-button {
+  width: 100%;
+}
+
+.d-margin {
+  margin: 5px;
+}

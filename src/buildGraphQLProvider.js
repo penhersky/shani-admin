@@ -1,14 +1,44 @@
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { createHttpLink } from 'apollo-link-http';
-import buildGraphQLProvider from 'ra-data-graphql-simple';
+import { account, user, main } from './dataProviders';
 
-const dataProvider = buildGraphQLProvider({
-  clientOptions: {
-    link: createHttpLink({
-      uri: String(process.env.REACT_APP_ACCOUNT_SERVER_URL),
-    }),
-    cache: new InMemoryCache(),
+const providersList = [
+  {
+    dataProvider: account,
+    client: 'account',
+    resources: [
+      'Admin',
+      'Profile',
+      'Contact',
+      'AccountType',
+      'Security',
+      'Location',
+      'Settings',
+      'Image',
+    ],
   },
-});
+  {
+    dataProvider: user,
+    client: 'account',
+    resources: ['Performer', 'Customer'],
+  },
+  {
+    dataProvider: main,
+    client: 'main',
+    resources: ['Category'],
+  },
+];
 
-export default dataProvider;
+const buildQuery = (introspectionResults) => (
+  raFetchType,
+  resourceName,
+  params,
+) => {
+  console.log('params', raFetchType, resourceName, params);
+  const provider = providersList.find((p) =>
+    p.resources.includes(resourceName),
+  );
+  const lowName = String(resourceName).toLowerCase();
+
+  return provider.dataProvider(raFetchType, resourceName, params, lowName);
+};
+
+export default buildQuery;

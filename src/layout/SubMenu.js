@@ -8,7 +8,6 @@ import Typography from '@material-ui/core/Typography';
 import Collapse from '@material-ui/core/Collapse';
 import Tooltip from '@material-ui/core/Tooltip';
 import { makeStyles } from '@material-ui/core/styles';
-import { useTranslate } from 'react-admin';
 
 const useStyles = makeStyles((theme) => ({
   icon: { minWidth: theme.spacing(5) },
@@ -35,7 +34,6 @@ const SubMenu = ({
   children,
   dense,
 }) => {
-  const translate = useTranslate();
   const classes = useStyles();
 
   const header = (
@@ -44,7 +42,7 @@ const SubMenu = ({
         {isOpen ? <ExpandMore /> : icon}
       </ListItemIcon>
       <Typography variant='inherit' color='textSecondary'>
-        {translate(name)}
+        {name}
       </Typography>
     </MenuItem>
   );
@@ -54,11 +52,16 @@ const SubMenu = ({
       {sidebarIsOpen || isOpen ? (
         header
       ) : (
-        <Tooltip title={translate(name)} placement='right'>
+        <Tooltip title={name} placement='right'>
           {header}
         </Tooltip>
       )}
-      <Collapse in={isOpen} timeout='auto' unmountOnExit>
+      <Collapse
+        in={isOpen}
+        timeout='auto'
+        unmountOnExit
+        style={{ marginLeft: 10 }}
+      >
         <List
           dense={dense}
           component='div'

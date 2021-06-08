@@ -2,6 +2,9 @@
   "name": "admin",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "^15.x"
+  },
   "dependencies": {
     "@apollo/client": "3.2.5",
     "@material-ui/core": "4.11.0",
@@ -10,12 +13,19 @@
     "@testing-library/user-event": "12.1.10",
     "apollo-cache-inmemory": "1.6.6",
     "apollo-link-http": "1.5.17",
+    "date-fns": "^2.16.1",
+    "google-map-react": "^2.1.9",
     "graphql": "15.4.0",
-    "ra-data-graphql-simple": "3.10.1",
+    "lodash": "4.17.20",
+    "ra-data-graphql": "3.10.1",
+    "ra-i18n-polyglot": "^3.10.2",
+    "ra-language-english": "^3.10.2",
     "react": "17.0.1",
     "react-admin": "3.10.1",
+    "react-apollo": "^3.1.5",
     "react-dom": "17.0.1",
     "react-scripts": "4.0.0",
+    "recharts": "^2.0.3",
     "web-vitals": "0.2.4"
   },
   "scripts": {
