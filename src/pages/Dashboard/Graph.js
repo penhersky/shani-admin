@@ -25,14 +25,14 @@ const Graph = (props) => {
         query: QUERY,
       }),
     }).then((r) => r.json());
-    data.then((inf) => setList(inf.data._getSingUpUsersByInterval));
+    data.then((inf) => setList(inf.data?._getSingUpUsersByInterval));
   }, []);
 
   return (
     <Card className='graph d-margin'>
       <Chart
         list={list}
-        width={870}
+        width={700}
         title='Users registered by the last 30 day'
       />
     </Card>

@@ -45,7 +45,7 @@ const Dashboard = () => {
           </div>
           <Chart
             list={list}
-            width={1330}
+            width={1110}
             title='Created orders by the last 30 days'
           />
           <Info />
